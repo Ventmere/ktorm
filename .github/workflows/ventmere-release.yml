@@ -1,0 +1,24 @@
+name: build
+
+on:
+  push:
+    tags:
+      - 'release-ventmere-*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set environment variables
+        run: |
+          echo "VENTMERE_USERNAME=ventmere-bot" >> $GITHUB_ENV
+          echo "VENTMERE_TOKEN=${{ secrets.BOT_PAT }}" >> $GITHUB_ENV
+
+      - name: Publish
+        run: |
+          TAG_WITHOUT_PREFIX="${GITHUB_REF#refs/tags/release-}"
+          chmod +x ./gradlew && ./gradlew publish -Pversion=$TAG_WITHOUT_PREFIX

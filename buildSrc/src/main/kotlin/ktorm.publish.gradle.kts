@@ -176,6 +176,15 @@ publishing {
                     password = System.getenv("OSSRH_PASSWORD")
                 }
             }
+            maven {
+                name = "ventmere"
+                url = uri("https://maven.pkg.github.com/Ventmere/ktorm")
+
+                credentials {
+                    username = System.getenv("VENTMERE_USERNAME")
+                    password = System.getenv("VENTMERE_TOKEN")
+                }
+            }
         }
     }
 }
