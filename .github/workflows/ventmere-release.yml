@@ -21,4 +21,4 @@ jobs:
       - name: Publish
         run: |
           TAG_WITHOUT_PREFIX="${GITHUB_REF#refs/tags/release-}"
-          chmod +x ./gradlew && ./gradlew publish -Pversion=$TAG_WITHOUT_PREFIX
+          chmod +x ./gradlew && ./gradlew publishDistPublicationToVentmereRepository -Pversion=$TAG_WITHOUT_PREFIX
